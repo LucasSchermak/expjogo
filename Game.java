@@ -1,11 +1,10 @@
-package exp_jogo2_ChildHood;
-
+import java.util.Scanner;
 
 public class Game 
 {
     private Parser parser;
     private Room currentRoom;
-        
+    private Scanner leitor;    
     
      // Create the game and initialise its internal map.
 
@@ -13,6 +12,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        leitor = new Scanner(System.in);
     }
 
 
@@ -55,7 +55,7 @@ public class Game
     public void play() 
     {            
         printWelcome();
-
+        printIntro();
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
                 
@@ -64,7 +64,7 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Obrigado por me jogar.  tchau tchau");
+        System.out.println("Obrigado por jogar! Tchau!");
         
     }
 
@@ -82,11 +82,26 @@ public class Game
         System.out.println("`88b    ooo   888   888   888   888  888   888   888     888  888   888 888   888 888   888  "); 
         System.out.println(" `Y8bood8P'  o888o o888o o888o o888o `Y8bod88P  o888o   o888o `Y8bod8P' `Y8bod8P' `Y8bod88P  \n\n\n");
         System.out.println("Um jogo produzido por Allyson Luan Dunke e Lucas Schermak.");
-        System.out.println("Escreva 'socorro' se precisar de ajuda ;)");
-        System.out.println();
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println("Escreva 'socorro' se precisar de ajuda ;) /n");
+        System.out.println("Aperte qualquer tecla para continuar...");
+        String qualquerTecla = leitor.nextLine().trim();
     }
-
+    
+    private void printIntro()
+    {
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAA !!!");
+        System.out.println(". . .");
+        System.out.println("O quê??");
+        System.out.println(". . .");
+        System.out.println("Ufa, foi só um pesadelo!");
+        System.out.println("Acabei de sonhar que minha mãe havia sumido!");
+        System.out.println("Não imagino eu, um garoto de 7 anos, conseguir viver sem a mamãe...");
+        System.out.println("Falando nisso, melhor eu ir falar com ela.");
+        System.out.println("Me bateu uma fome!");
+        System.out.println();
+        //System.out.println(currentRoom.getLongDescription());
+    }
     /**
      * Given a command, process (that is: execute) the command.
      * @param command The command to be processed.
