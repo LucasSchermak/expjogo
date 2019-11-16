@@ -1,24 +1,22 @@
-package exp_jogo2_ChildHood;
-
 import java.util.HashMap;
 import java.util.Set;
 
 public class Room 
 {
     private String description;
+    private String name;
     private HashMap<String, Room> exits;        // stores exits of this room.
-    private HashMap<String, Object>dObj;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String name,String description) 
     {
         this.description = description;
+        this.name = name;
         exits = new HashMap<String, Room>();
-        dObj = new HashMap<String,Object>();
     }
 
     /**
@@ -39,25 +37,7 @@ public class Room
     {
         return description;
     }
-    public String getDescriptionObj () {
-    	String olharObj= "Olhar: ";
-    	Set <String> obj = dObj.keySet();
-    	for(String desc :obj)
-    		olharObj += " " + desc;
-    	return olharObj;
-    }
-  
-    public String getOlhaDesc(String name)
-    {
-        String olharObj = "Você olhou " + name + ".\n";
-        Object descTemp = dObj.get(name);
-        if (descTemp != null) {
-            olharObj += "it's " + descTemp.getDescription() + ".";
-            return olharObj;
-        }
-        return "Eu não estou enxergando isso.";
-    }
-    /**
+             /**
      * Return a description of the room in the form:
      *     You are in the kitchen.
      *     Exits: north west
@@ -65,7 +45,7 @@ public class Room
      */
     public String getLongDescription()
     {
-        return "Estou " + description + ".\n" + getExitString();
+        return "Estou " + name + description + ".\n" + getExitString();
     }
 
     /**
@@ -92,6 +72,9 @@ public class Room
     public Room getExit(String direction) 
     {
         return exits.get(direction);
+    }
+    public String getName(){
+        return name;
     }
 }
 
