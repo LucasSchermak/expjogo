@@ -22,12 +22,12 @@ public class Game
         Room homeP, hPsala, hPcozinha, hPquarto, hPbanheiro, rua;
       
         // create the rooms
-        homeP = new Room("na minha casa");
-        hPsala = new Room("na sala de casa");
-        hPcozinha = new Room("na cozinha da minha mãe");
-        hPquarto = new Room("no meu quarto");
-        hPbanheiro = new Room("no banheiro de casa");
-        rua = new Room("na rua de casa");
+        homeP = new Room("Na Minha casa","...");
+        hPsala = new Room("Na Sala","...");
+        hPcozinha = new Room("Na Cozinha","...");
+        hPquarto = new Room("No meu Quarto","...");
+        hPbanheiro = new Room("No Banheiro","...");
+        rua = new Room("Na Rua","...");
         // initialise room exits
         homeP.setExit("leste", hPsala);
         homeP.setExit("sul", hPcozinha);
@@ -46,7 +46,7 @@ public class Game
         hPbanheiro.setExit("oeste", hPsala);
         
         rua.setExit("sul", homeP);
-        currentRoom = homeP;
+        currentRoom = hPquarto;
     }
 
     /**
@@ -82,7 +82,7 @@ public class Game
         System.out.println("`88b    ooo   888   888   888   888  888   888   888     888  888   888 888   888 888   888  "); 
         System.out.println(" `Y8bood8P'  o888o o888o o888o o888o `Y8bod88P  o888o   o888o `Y8bod8P' `Y8bod8P' `Y8bod88P  \n\n\n");
         System.out.println("Um jogo produzido por Allyson Luan Dunke e Lucas Schermak.");
-        System.out.println("Escreva 'socorro' se precisar de ajuda ;) /n");
+        System.out.println("Escreva 'socorro' se precisar de ajuda ;)");
         System.out.println("Aperte qualquer tecla para continuar...");
         String qualquerTecla = leitor.nextLine().trim();
     }
@@ -100,7 +100,7 @@ public class Game
         System.out.println("Falando nisso, melhor eu ir falar com ela.");
         System.out.println("Me bateu uma fome!");
         System.out.println();
-        //System.out.println(currentRoom.getLongDescription());
+        System.out.println(currentRoom.getLongDescription());
     }
     /**
      * Given a command, process (that is: execute) the command.
