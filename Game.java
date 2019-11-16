@@ -10,7 +10,7 @@ public class Game
 
     public Game() 
     {
-        createRooms();
+        Room.createRooms();
         parser = new Parser();
         leitor = new Scanner(System.in);
     }
