@@ -3,14 +3,15 @@ import java.util.Scanner;
 public class Game 
 {
     private Parser parser;
-    private Room currentRoom;
+    private Player player;
     private Scanner leitor;    
     
      // Create the game and initialise its internal map.
 
     public Game() 
     {
-        Room.createRooms();
+        player = new Player();
+        createRooms();
         parser = new Parser();
         leitor = new Scanner(System.in);
     }
@@ -36,6 +37,7 @@ public class Game
 
         hPsala.setExit("oeste", hPcozinha);
         hPsala.setExit("oeste", hPquarto);
+        hPsala.setExit("norte", rua);
 
         hPcozinha.setExit("leste", hPsala);
         hPcozinha.setExit("oeste", hPquarto);
@@ -46,7 +48,8 @@ public class Game
         hPbanheiro.setExit("oeste", hPsala);
         
         rua.setExit("sul", homeP);
-        currentRoom = hPquarto;
+        
+        player.setCurrentRoom(hPquarto);
     }
 
     /**
@@ -74,8 +77,8 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("   oooooo.   oooo         o8o  oooo        .o8  ooooo   ooooo                           .o8  ");
-        System.out.println(" d8P'  `Y8b  `888         `'   `888        888  `888'   `888'                           888  ");
+        System.out.println("  .oooooo.   oooo         o8o  oooo        .o8  ooooo   ooooo                           .o8  ");
+        System.out.println(".d8P'  `Y8b  `888         `''  `888        888  `888'   `888'                           888  ");
         System.out.println("888           888 .oo.   oooo   888   .oooo888   888     888   .ooooo.   .ooooo.   .oooo888  "); 
         System.out.println("888           888PYY88b  `888   888  d88' `888   888ooooo888  d88' `88b d88' `88b d88' `888  "); 
         System.out.println("888           888   888   888   888  888   888   888     888  888   888 888   888 888   888  "); 
@@ -100,7 +103,7 @@ public class Game
         System.out.println("Falando nisso, melhor eu ir falar com ela.");
         System.out.println("Me bateu uma fome!");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(player.getCurrentRoom().getLongDescription());
     }
     /**
      * Given a command, process (that is: execute) the command.
@@ -162,14 +165,14 @@ public class Game
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = currentRoom.getExit(direction);
+        Room nextRoom = player.getCurrentRoom().getExit(direction);
 
         if (nextRoom == null) {
             System.out.println("Não tem caminho por aqui!");
         }
         else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            player.setCurrentRoom(nextRoom);
+            System.out.println(player.getCurrentRoom().getLongDescription());
         }
     }
 
