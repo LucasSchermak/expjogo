@@ -1,33 +1,21 @@
-
-/**
- * Write a description of class NPC here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class NPC
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
+    private String nome;
+    private String descricao;
     /**
      * Constructor for objects of class NPC
      */
-    public NPC()
+    public NPC(String nome,String descricao)
     {
-        // initialise instance variables
-        x = 0;
+        this.nome = nome;
+        this.descricao = descricao;
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    public String getDescricao()
     {
-        // put your code here
-        return x + y;
+        return descricao;
+    }
+    public String getNome()
+    {
+        return nome;
     }
 }
