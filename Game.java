@@ -21,6 +21,7 @@ public class Game
      */
     public void play() 
     {            
+        playMusic();
         printWelcome();
         printIntro();
         // Enter the main command loop.  Here we repeatedly read commands and
@@ -99,7 +100,13 @@ public class Game
     }
 
     // implementations of user commands:
-
+    /**
+    * Tocar musica
+    */
+    private void playMusic()
+    {
+        new Som().som();
+    }
     /**
      * Print out some help information.
      * Here we print some stupid, cryptic message and a list of the 
