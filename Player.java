@@ -1,27 +1,19 @@
 import java.util.HashMap;
 import java.util.Set;
 
-public class Player {
-    private Room currentRoom;   
+public class Player {   
     private HashMap<String, Item> inventario;
-    
+
     public Player(){
-        currentRoom = new Room("sala que começa","...");
         inventario = new HashMap<String, Item>();
-    }
-    public Room getCurrentRoom(){
-        return currentRoom;
-    }
-    public void setCurrentRoom(Room novaSala)
-    {
-        currentRoom = novaSala;
     }
     //adiciona o inventario em uma string e retorna ela.
     public String getInventario(){
         String returnInventario = "Inventario: ";
         Set<String> keys = inventario.keySet();
         for(String item : keys){
-            returnInventario += " " + item;}
+            returnInventario += " " + item;
+        }
         return returnInventario;
     }
     //adiciona item diretamente no inventario
@@ -40,7 +32,7 @@ public class Player {
         }
         Item novoItem = new Item (descricao, itemNome);
         inventario.put(itemNome, novoItem);
-    
+
     }
     // verifica se o player já tem uma chave no inventario.
     public boolean verificaChave(){
