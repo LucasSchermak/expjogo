@@ -3,53 +3,17 @@ import java.util.Scanner;
 public class Game 
 {
     private Parser parser;
-    private Player player;
     private Scanner leitor;    
-    
-     // Create the game and initialise its internal map.
+    private CriaSala criaSala;
+
+    // Create the game and initialise its internal map.
 
     public Game() 
     {
-        player = new Player();
-        createRooms();
+        criaSala = new CriaSala();
         parser = new Parser();
         leitor = new Scanner(System.in);
-    }
-
-
-     //* Create all the rooms 
-    private void createRooms()
-    {
-        Room homeP, hPsala, hPcozinha, hPquarto, hPbanheiro, rua;
-      
-        // create the rooms
-        homeP = new Room("Na Minha casa","...");
-        hPsala = new Room("Na Sala","...");
-        hPcozinha = new Room("Na Cozinha","...");
-        hPquarto = new Room("No meu Quarto","...");
-        hPbanheiro = new Room("No Banheiro","...");
-        rua = new Room("Na Rua","...");
-        // initialise room exits
-        homeP.setExit("leste", hPsala);
-        homeP.setExit("sul", hPcozinha);
-        homeP.setExit("oeste", hPquarto);
-        homeP.setExit("norte",rua);
-
-        hPsala.setExit("oeste", hPcozinha);
-        hPsala.setExit("oeste", hPquarto);
-        hPsala.setExit("norte", rua);
-
-        hPcozinha.setExit("leste", hPsala);
-        hPcozinha.setExit("oeste", hPquarto);
-        
-        hPquarto.setExit("norte", hPsala);
-        hPquarto.setExit("leste", hPcozinha);
-
-        hPbanheiro.setExit("oeste", hPsala);
-        
-        rua.setExit("sul", homeP);
-        
-        player.setCurrentRoom(hPquarto);
+        criaSala.createRooms();
     }
 
     /**
@@ -61,14 +25,14 @@ public class Game
         printIntro();
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
-                
+
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
         System.out.println("Obrigado por jogar! Tchau!");
-        
+
     }
 
     /**
@@ -89,7 +53,7 @@ public class Game
         System.out.println("Aperte qualquer tecla para continuar...");
         String qualquerTecla = leitor.nextLine().trim();
     }
-    
+
     private void printIntro()
     {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
@@ -103,8 +67,9 @@ public class Game
         System.out.println("Falando nisso, melhor eu ir falar com ela.");
         System.out.println("Me bateu uma fome!");
         System.out.println();
-        System.out.println(player.getCurrentRoom().getLongDescription());
+        System.out.println(criaSala.getCurrentRoom().getLongDescription());
     }
+
     /**
      * Given a command, process (that is: execute) the command.
      * @param command The command to be processed.
@@ -162,17 +127,30 @@ public class Game
             return;
         }
 
-        String direction = command.getSecondWord();
+        String direcao = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = player.getCurrentRoom().getExit(direction);
+        Room nextRoom = criaSala.getCurrentRoom().getExit(direcao);
 
+        Room nextPorta = criaSala.getCurrentRoom().getPorta(direcao);
+        if (nextPorta != null){
+            if(criaSala.getCurrentRoom().getFechada(direcao) == true)
+            {
+                System.out.println("A porta está fechada!");
+                return;
+            }
+            else
+            {
+                criaSala.setCurrentRoom(nextPorta);
+
+            }
+        }
         if (nextRoom == null) {
             System.out.println("Não tem caminho por aqui!");
         }
         else {
-            player.setCurrentRoom(nextRoom);
-            System.out.println(player.getCurrentRoom().getLongDescription());
+            criaSala.setCurrentRoom(nextRoom);
+            System.out.println(criaSala.getCurrentRoom().getLongDescription());
         }
     }
 
