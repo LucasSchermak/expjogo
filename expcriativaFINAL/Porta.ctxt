@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Porta
+comment1.params=direcao\ saidaProxima\ fechada
+comment1.target=Porta(java.lang.String,\ Room,\ boolean)
+comment2.params=
+comment2.target=void\ abrir()
+comment3.params=
+comment3.target=boolean\ getFechada()
+numComments=4

@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Object
+comment1.params=name\ dObj
+comment1.target=Object(java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=
+comment3.target=java.lang.String\ getDescriptionObj()
+numComments=4
