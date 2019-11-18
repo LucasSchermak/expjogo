@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Player
+comment1.params=
+comment1.target=Player()
+comment2.params=
+comment2.target=Room\ getCurrentRoom()
+comment3.params=novaSala
+comment3.target=void\ setCurrentRoom(Room)
+comment4.params=
+comment4.target=java.lang.String\ getInventario()
+comment5.params=item
+comment5.target=void\ addInventario(Item)
+comment6.params=itemNome\ descricao
+comment6.target=void\ addInventarioD(java.lang.String,\ java.lang.String)
+comment7.params=
+comment7.target=boolean\ verificaChave()
+comment8.params=
+comment8.target=boolean\ verificaControle()
+comment9.params=itemNome
+comment9.target=Item\ dropItem(java.lang.String)
+numComments=10
