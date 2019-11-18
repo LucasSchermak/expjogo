@@ -1,34 +1,38 @@
-package exp_jogo2_ChildHood;
-
 import java.util.HashMap;
 import java.util.Set;
 
 public class Room 
 {
     private String description;
+    private String name;
     private HashMap<String, Room> exits;        // stores exits of this room.
-    private HashMap<String, Object>dObj;
+    private HashMap<String, Item> itens;
+    private NPC npc;
+    private HashMap<String, Porta> portas;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String name,String description) 
     {
         this.description = description;
+        this.name = name;
         exits = new HashMap<String, Room>();
-        dObj = new HashMap<String,Object>();
+        itens = new HashMap<String, Item>();
+        npc = new NPC("Mãe","...");
+        portas = new HashMap<String, Porta>();
     }
 
     /**
      * Define an exit from this room.
-     * @param direction The direction of the exit.
+     * @param direcao The direcao of the exit.
      * @param neighbor  The room to which the exit leads.
      */
-    public void setExit(String direction, Room neighbor) 
+    public void setExit(String direcao, Room neighbor) 
     {
-        exits.put(direction, neighbor);
+        exits.put(direcao, neighbor);
     }
 
     /**
@@ -39,24 +43,7 @@ public class Room
     {
         return description;
     }
-    public String getDescriptionObj () {
-    	String olharObj= "Olhar: ";
-    	Set <String> obj = dObj.keySet();
-    	for(String desc :obj)
-    		olharObj += " " + desc;
-    	return olharObj;
-    }
-  
-    public String getOlhaDesc(String name)
-    {
-        String olharObj = "Você olhou " + name + ".\n";
-        Object descTemp = dObj.get(name);
-        if (descTemp != null) {
-            olharObj += "it's " + descTemp.getDescription() + ".";
-            return olharObj;
-        }
-        return "Eu não estou enxergando isso.";
-    }
+
     /**
      * Return a description of the room in the form:
      *     You are in the kitchen.
@@ -65,7 +52,7 @@ public class Room
      */
     public String getLongDescription()
     {
-        return "Estou " + description + ".\n" + getExitString();
+        return "Estou " + name + description + ".\n" + getExitString() +".\n" + getPortaString() + ".\n";//+ getItemString() + ".\n" + getNPCString();
     }
 
     /**
@@ -84,14 +71,46 @@ public class Room
     }
 
     /**
-     * Return the room that is reached if we go from this room in direction
-     * "direction". If there is no room in that direction, return null.
-     * @param direction The exit's direction.
-     * @return The room in the given direction.
+     * Return the room that is reached if we go from this room in direcao
+     * "direcao". If there is no room in that direcao, return null.
+     * @param direcao The exit's direcao.
+     * @return The room in the given direcao.
      */
-    public Room getExit(String direction) 
+    public Room getExit(String direcao) 
     {
-        return exits.get(direction);
+        return exits.get(direcao);
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setPorta(String direcao, Room saidaProxima, boolean fechada)
+    {
+        Porta p = new Porta(direcao, saidaProxima, fechada);
+        portas.put(direcao, p);
+    }
+
+    public Room getPorta(String direcao){
+        Porta p = portas.get(direcao) ;
+        if(p != null)
+        {
+            return p.getSaidaProxima();
+        }
+        return null;
+    }
+
+    public String getPortaString(){
+        String returnString = "Portas:";
+        Set<String> keys = portas.keySet();
+        for(String porta : keys) {
+            returnString += " " + porta;
+        }
+        return returnString;
+    }
+
+    public boolean getFechada(String direcao){
+        return portas.get(direcao).getFechada();
     }
 }
 

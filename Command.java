@@ -1,4 +1,3 @@
-package exp_jogo2_ChildHood;
 
 
 public class Command

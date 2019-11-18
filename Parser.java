@@ -1,7 +1,5 @@
-package exp_jogo2_ChildHood;
 
 import java.util.Scanner;
-
 public class Parser 
 {
     private CommandWords commands;  // holds all valid command words

@@ -3,50 +3,17 @@ import java.util.Scanner;
 public class Game 
 {
     private Parser parser;
-    private Room currentRoom;
     private Scanner leitor;    
-    
-     // Create the game and initialise its internal map.
+    private CriaSala criaSala;
+
+    // Create the game and initialise its internal map.
 
     public Game() 
     {
-        createRooms();
+        criaSala = new CriaSala();
         parser = new Parser();
         leitor = new Scanner(System.in);
-    }
-
-
-     //* Create all the rooms 
-    private void createRooms()
-    {
-        Room homeP, hPsala, hPcozinha, hPquarto, hPbanheiro, rua;
-      
-        // create the rooms
-        homeP = new Room("na minha casa");
-        hPsala = new Room("na sala de casa");
-        hPcozinha = new Room("na cozinha da minha mãe");
-        hPquarto = new Room("no meu quarto");
-        hPbanheiro = new Room("no banheiro de casa");
-        rua = new Room("na rua de casa");
-        // initialise room exits
-        homeP.setExit("leste", hPsala);
-        homeP.setExit("sul", hPcozinha);
-        homeP.setExit("oeste", hPquarto);
-        homeP.setExit("norte",rua);
-
-        hPsala.setExit("oeste", hPcozinha);
-        hPsala.setExit("oeste", hPquarto);
-
-        hPcozinha.setExit("leste", hPsala);
-        hPcozinha.setExit("oeste", hPquarto);
-        
-        hPquarto.setExit("norte", hPsala);
-        hPquarto.setExit("leste", hPcozinha);
-
-        hPbanheiro.setExit("oeste", hPsala);
-        
-        rua.setExit("sul", homeP);
-        currentRoom = homeP;
+        criaSala.createRooms();
     }
 
     /**
@@ -54,18 +21,19 @@ public class Game
      */
     public void play() 
     {            
+        playMusic("Music/zuul.wav");
         printWelcome();
         printIntro();
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
-                
+
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
         System.out.println("Obrigado por jogar! Tchau!");
-        
+
     }
 
     /**
@@ -74,19 +42,19 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("   oooooo.   oooo         o8o  oooo        .o8  ooooo   ooooo                           .o8  ");
-        System.out.println(" d8P'  `Y8b  `888         `'   `888        888  `888'   `888'                           888  ");
+        System.out.println("  .oooooo.   oooo         o8o  oooo        .o8  ooooo   ooooo                           .o8  ");
+        System.out.println(".d8P'  `Y8b  `888         `''  `888        888  `888'   `888'                           888  ");
         System.out.println("888           888 .oo.   oooo   888   .oooo888   888     888   .ooooo.   .ooooo.   .oooo888  "); 
         System.out.println("888           888PYY88b  `888   888  d88' `888   888ooooo888  d88' `88b d88' `88b d88' `888  "); 
         System.out.println("888           888   888   888   888  888   888   888     888  888   888 888   888 888   888  "); 
         System.out.println("`88b    ooo   888   888   888   888  888   888   888     888  888   888 888   888 888   888  "); 
         System.out.println(" `Y8bood8P'  o888o o888o o888o o888o `Y8bod88P  o888o   o888o `Y8bod8P' `Y8bod8P' `Y8bod88P  \n\n\n");
         System.out.println("Um jogo produzido por Allyson Luan Dunke e Lucas Schermak.");
-        System.out.println("Escreva 'socorro' se precisar de ajuda ;) /n");
+        System.out.println("Escreva 'socorro' se precisar de ajuda ;)");
         System.out.println("Aperte qualquer tecla para continuar...");
         String qualquerTecla = leitor.nextLine().trim();
     }
-    
+
     private void printIntro()
     {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
@@ -100,8 +68,9 @@ public class Game
         System.out.println("Falando nisso, melhor eu ir falar com ela.");
         System.out.println("Me bateu uma fome!");
         System.out.println();
-        //System.out.println(currentRoom.getLongDescription());
+        System.out.println(criaSala.getCurrentRoom().getLongDescription());
     }
+
     /**
      * Given a command, process (that is: execute) the command.
      * @param command The command to be processed.
@@ -131,7 +100,13 @@ public class Game
     }
 
     // implementations of user commands:
-
+    /**
+    * Tocar musica
+    */
+    private void playMusic(String musica)
+    {
+        new Som().tocarSom(musica);
+    }
     /**
      * Print out some help information.
      * Here we print some stupid, cryptic message and a list of the 
@@ -159,17 +134,30 @@ public class Game
             return;
         }
 
-        String direction = command.getSecondWord();
+        String direcao = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = currentRoom.getExit(direction);
+        Room nextRoom = criaSala.getCurrentRoom().getExit(direcao);
 
+        Room nextPorta = criaSala.getCurrentRoom().getPorta(direcao);
+        if (nextPorta != null){
+            if(criaSala.getCurrentRoom().getFechada(direcao) == true)
+            {
+                System.out.println("A porta está fechada!");
+                return;
+            }
+            else
+            {
+                criaSala.setCurrentRoom(nextPorta);
+
+            }
+        }
         if (nextRoom == null) {
             System.out.println("Não tem caminho por aqui!");
         }
         else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            criaSala.setCurrentRoom(nextRoom);
+            System.out.println(criaSala.getCurrentRoom().getLongDescription());
         }
     }
 

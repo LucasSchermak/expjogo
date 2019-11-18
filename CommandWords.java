@@ -1,11 +1,10 @@
-package exp_jogo2_ChildHood;
 
 public class CommandWords
 {
     // a constant array that holds all valid command words
     private static final String[] validCommands = {
-        "ir", "sair", "socorro", "buceta", "caralho", "foda", "puta", "filho da puta", "corno", "vai se fuder", "toma no cu", "tomar no cu", "vai tomar no cu", "vtnc", "cu", "porra", "desgracado", "viado", "seu lixo"};
-
+            "ir", "sair", "socorro" 
+        };//"buceta", "caralho", "foda", "puta", "filho da puta", "corno", "vai se fuder", "toma no cu", "tomar no cu", "vai tomar no cu", "vtnc", "cu", "porra", "desgracado", "viado", "seu lixo"};
 
     /**
      * Constructor - initialise the command words.
