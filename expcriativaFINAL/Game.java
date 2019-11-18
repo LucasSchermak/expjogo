@@ -22,6 +22,7 @@ public class Game
     {            
         printWelcome();
         printIntro();
+        tocarMusica("Music/zuul.wav");
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
 
@@ -244,6 +245,11 @@ public class Game
         System.out.println(player.getInventario());
     }
 
+    private void tocarMusica(String musica)
+    {
+        new Som().tocarSom(musica);
+    }
+    
     /**
      * Given a command, process (that is: execute) the command.
      * @param command The command to be processed.
