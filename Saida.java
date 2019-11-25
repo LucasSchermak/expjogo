@@ -22,7 +22,6 @@ public class Saida
 
     public String getDirecao()
     {
-        // put your code here
         return direcao;
     }
 

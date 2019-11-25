@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Saida
+comment0.text=\r\n\ classe\ com\ saidas\ n\u00E3o\ fechadas.\r\n
+comment1.params=
+comment1.target=Saida()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Saida\r\n
+comment2.params=direcao\ saidaProxima
+comment2.target=Saida(java.lang.String,\ Room)
+comment3.params=
+comment3.target=java.lang.String\ getDirecao()
+comment4.params=direcao
+comment4.target=void\ setDirecao(java.lang.String)
+comment5.params=
+comment5.target=Room\ getSaidaProxima()
+comment6.params=saidaProxima
+comment6.target=void\ setSaidaProxima(Room)
+numComments=7

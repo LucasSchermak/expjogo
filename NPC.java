@@ -1,19 +1,14 @@
 public class NPC
 {
     private String nome;
-    private String descricao;
     /**
      * Constructor for objects of class NPC
      */
-    public NPC(String nome,String descricao)
+    public NPC(String nome)
     {
-        this.nome = nome;
-        this.descricao = descricao;
+        this.nome = nome;  
     }
-    public String getDescricao()
-    {
-        return descricao;
-    }
+
     public String getNome()
     {
         return nome;

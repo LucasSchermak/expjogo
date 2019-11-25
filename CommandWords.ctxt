@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=CommandWords
+comment1.params=
+comment1.target=CommandWords()
+comment1.text=\r\n\ Constructor\ -\ initialise\ the\ command\ words.\r\n
+comment2.params=aString
+comment2.target=boolean\ isCommand(java.lang.String)
+comment2.text=\r\n\ Check\ whether\ a\ given\ String\ is\ a\ valid\ command\ word.\ \r\n\ @return\ true\ if\ it\ is,\ false\ if\ it\ isn't.\r\n
+comment3.params=
+comment3.target=void\ showAll()
+comment3.text=\r\n\ Print\ all\ valid\ commands\ to\ System.out.\r\n
+numComments=4

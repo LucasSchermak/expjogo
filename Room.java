@@ -1,14 +1,13 @@
 import java.util.HashMap;
 import java.util.Set;
 
-public class Room 
-{
+public class Room {
     private String description;
     private String name;
     private HashMap<String, Room> exits;        // stores exits of this room.
-    private HashMap<String, Item> itens;
-    private NPC npc;
     private HashMap<String, Porta> portas;
+    private HashMap<String, Item> itens;
+    private HashMap<String, NPC> npcs;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -21,8 +20,8 @@ public class Room
         this.name = name;
         exits = new HashMap<String, Room>();
         itens = new HashMap<String, Item>();
-        npc = new NPC("Mãe","...");
         portas = new HashMap<String, Porta>();
+        npcs = new HashMap<String, NPC>();
     }
 
     /**
@@ -52,14 +51,17 @@ public class Room
      */
     public String getLongDescription()
     {
-        return "Estou " + name + description + ".\n" + getExitString() +".\n" + getPortaString() + ".\n";//+ getItemString() + ".\n" + getNPCString();
+        return "Estou " + name + ", " + description + ".\n" + getExitString() +".\n" + getPortaString() + ".\n" + getItemString() +".\n" + getNPCString();
     }
-
-    /**
-     * Return a string describing the room's exits, for example
-     * "Exits: north west".
-     * @return Details of the room's exits.
-     */
+    private String getItemString() {
+        String returnString = "Itens:";
+        Set<String> keys = itens.keySet();
+        for(String item : keys) {
+            returnString += " " + item;
+            returnString += " " + itens.get(item).getDescricao();
+        }
+        return returnString;
+    }
     private String getExitString()
     {
         String returnString = "Saidas:";
@@ -69,13 +71,6 @@ public class Room
         }
         return returnString;
     }
-
-    /**
-     * Return the room that is reached if we go from this room in direcao
-     * "direcao". If there is no room in that direcao, return null.
-     * @param direcao The exit's direcao.
-     * @return The room in the given direcao.
-     */
     public Room getExit(String direcao) 
     {
         return exits.get(direcao);
@@ -99,6 +94,29 @@ public class Room
         }
         return null;
     }
+    public Porta getPortaAtual(String direcao) {
+        return portas.get(direcao);
+    }
+    public void setItem(String name, String descricao) {
+        Set<String>keys = itens.keySet();
+        for(String item : keys)
+            if(item.equals(name))
+                return;
+        Item novoItem = new Item(name, descricao);
+        itens.put(name, novoItem);
+    }
+    public Item deletaItem(String name){
+        Set<String>keys = itens.keySet();
+        for(String item: keys) {
+            if (item.equals(name)) {
+                Item i = itens.get(name);
+                itens.remove(name);
+                return i;
+            }
+        }
+        System.out.println("Não tem isso aqui.");
+        return null;
+    }
 
     public String getPortaString(){
         String returnString = "Portas:";
@@ -108,9 +126,33 @@ public class Room
         }
         return returnString;
     }
-
+    
     public boolean getFechada(String direcao){
         return portas.get(direcao).getFechada();
     }
+    private String getNPCString()
+    {
+        String returnString = "NPCS:";
+        Set<String> keys = npcs.keySet();
+        for(String npc : keys)
+            returnString += " " + npc;
+        return returnString;
+    }
+    public void addNPC(String name)
+    {
+    
+        Set<String> keys = npcs.keySet();
+        for(String npc : keys)
+            if (npc.equals(name))
+                return;
+    
+        NPC newNPC = new NPC(name);
+        npcs.put(name, newNPC);
+        
+    }
+    public NPC getNPC()
+    {
+        return npcs.entrySet().iterator().next().getValue();
+    }    
 }
 
