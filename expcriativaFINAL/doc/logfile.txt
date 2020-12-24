@@ -1,0 +1,36 @@
+Class documentation
+<---- javadoc command: ---->
+C:\Users\Allyson Dunke\Desktop\bluejj\BlueJ\jdk\bin\javadoc.exe
+-author
+-version
+-nodeprecated
+-package
+-Xdoclint:none
+-noindex
+-notree
+-nohelp
+-nonavbar
+-source
+11
+-classpath
+C:\Users\Allyson Dunke\Desktop\bluejj\bluej\lib\bluejcore.jar;C:\Users\Allyson Dunke\Desktop\bluejj\bluej\lib\junit-4.11.jar;C:\Users\Allyson Dunke\Desktop\bluejj\bluej\lib\hamcrest-core-1.3.jar;C:\Users\Allyson Dunke\Desktop\bluejj\bluej\lib\lang-stride.jar;C:\Users\Allyson Dunke\Desktop\bluejj\bluej\lib\javafx\lib\javafx.base.jar;C:\Users\Allyson Dunke\Desktop\bluejj\bluej\lib\javafx\lib\javafx.controls.jar;C:\Users\Allyson Dunke\Desktop\bluejj\bluej\lib\javafx\lib\javafx.fxml.jar;C:\Users\Allyson Dunke\Desktop\bluejj\bluej\lib\javafx\lib\javafx.graphics.jar;C:\Users\Allyson Dunke\Desktop\bluejj\bluej\lib\javafx\lib\javafx.media.jar;C:\Users\Allyson Dunke\Desktop\bluejj\bluej\lib\javafx\lib\javafx.properties.jar;C:\Users\Allyson Dunke\Desktop\bluejj\bluej\lib\javafx\lib\javafx.swing.jar;C:\Users\Allyson Dunke\Desktop\bluejj\bluej\lib\javafx\lib\javafx.web.jar;C:\Users\Allyson Dunke\Desktop\expcriativaFINAL
+-d
+C:\Users\Allyson Dunke\Desktop\expcriativaFINAL\doc
+-encoding
+UTF-8
+-charset
+UTF-8
+C:\Users\Allyson Dunke\Desktop\expcriativaFINAL\Game.java
+<---- end of javadoc command ---->
+Loading source file C:\Users\Allyson Dunke\Desktop\expcriativaFINAL\Game.java...
+Constructing Javadoc information...
+C:\Users\Allyson Dunke\Desktop\expcriativaFINAL\Player.java:40: error: unmappable character (0xE1) for encoding UTF-8
+				System.out.println("Eu j? tenho isso!");
+				                        ^
+C:\Users\Allyson Dunke\Desktop\expcriativaFINAL\Player.java:72: error: unmappable character (0xE3) for encoding UTF-8
+		System.out.println("Eu n?o tenho isso!");
+		                        ^
+C:\Users\Allyson Dunke\Desktop\expcriativaFINAL\Room.java:114: error: unmappable character (0xE3) for encoding UTF-8
+    	System.out.println("N?o tem isso aqui.");
+    	                     ^
+3 errors

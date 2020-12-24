@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Player
+comment1.params=
+comment1.target=Player()
+comment2.params=
+comment2.target=java.lang.String\ getInventario()
+comment3.params=item
+comment3.target=void\ addInventario(Item)
+comment4.params=itemNome\ descricao
+comment4.target=void\ addInventarioD(java.lang.String,\ java.lang.String)
+comment5.params=
+comment5.target=boolean\ verificaChave()
+comment6.params=itemNome
+comment6.target=Item\ dropItem(java.lang.String)
+numComments=7
